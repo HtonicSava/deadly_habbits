@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Трекер вредных привычек',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Трекер вредных привычек'),
     );
   }
 }
@@ -48,8 +48,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -57,7 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
     });
   }
 
@@ -75,40 +72,322 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(300.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                    'Вредные привычки – термин, характеризующий такой образ жизни, при котором человек осознанно наносит вред своему здоровью, занимаясь определёнными вещами, приносящими приятные ощущения. Зачастую многим подобным зависимостям личность не придает серьезного значения, считая их проявлением собственной натуры'),
+                const SizedBox(height: 10),
+                Container(
+                  width: 1000,
+                  height: 250,
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      border: Border.all(),
+                      borderRadius: const BorderRadius.all(Radius.circular(20))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        const Text('Курение'),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.smoking_rooms_rounded,
+                              size: 200,
+                            ),
+                            Column(
+                              children: [
+                                Row(
+                                  children: const [
+                                    Text(
+                                      'Цена на пачку сигарет',
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    SizedBox(
+                                      width: 300,
+                                      child: TextField(
+                                        obscureText: true,
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          labelText: '210 руб.',
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: const [
+                                      Text(
+                                        'Сколько вы курите в день',
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      SizedBox(
+                                        width: 300,
+                                        child: TextField(
+                                          obscureText: true,
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            labelText: '10 сигарет',
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Column(
+                                  children: const [
+                                    Text(
+                                      'Вы бы могли сэкономить %money% за день',
+                                    ),
+                                    Text(
+                                      'Вы бы могли сэкономить %money% за месяц',
+                                    ),
+                                    Text(
+                                      'Вы бы могли сэкономить %money% за год',
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: 1000,
+                  height: 250,
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      border: Border.all(),
+                      borderRadius: const BorderRadius.all(Radius.circular(20))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        const Text('Кофе / Энергетики'),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.coffee,
+                              size: 200,
+                            ),
+                            Column(
+                              children: [
+                                Row(
+                                  children: const [
+                                    Text(
+                                      'Цена на стакан кофе / банку энергетика',
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    SizedBox(
+                                      width: 300,
+                                      child: TextField(
+                                        obscureText: true,
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          labelText: '120 руб.',
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: const [
+                                      Text(
+                                        'Сколько вы выпиваете в день',
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      SizedBox(
+                                        width: 300,
+                                        child: TextField(
+                                          obscureText: true,
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            labelText: '2 порции',
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Column(
+                                  children: const [
+                                    Text(
+                                      'Вы бы могли сэкономить %money% за день',
+                                    ),
+                                    Text(
+                                      'Вы бы могли сэкономить %money% за месяц',
+                                    ),
+                                    Text(
+                                      'Вы бы могли сэкономить %money% за год',
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: 1000,
+                  height: 300,
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      border: Border.all(),
+                      borderRadius: const BorderRadius.all(Radius.circular(20))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        const Text('Алкоголь'),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.local_drink,
+                              size: 200,
+                            ),
+                            Column(
+                              children: [
+                                Row(
+                                  children: const [
+                                    Text(
+                                      'Цена на порцию алкоголя',
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    SizedBox(
+                                      width: 300,
+                                      child: TextField(
+                                        obscureText: true,
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                          labelText: '250 руб.',
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: const [
+                                      Text(
+                                        'Сколько вы выпиваете таких',
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      SizedBox(
+                                        width: 300,
+                                        child: TextField(
+                                          obscureText: true,
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            labelText: '3 порции',
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: const [
+                                      Text(
+                                        'Как часто вы пьёте (раз в месяц)',
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      SizedBox(
+                                        width: 300,
+                                        child: TextField(
+                                          obscureText: true,
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            labelText: '2 раза',
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Column(
+                                  children: const [
+                                    Text(
+                                      'Вы бы могли сэкономить %money% за день',
+                                    ),
+                                    Text(
+                                      'Вы бы могли сэкономить %money% за месяц',
+                                    ),
+                                    Text(
+                                      'Вы бы могли сэкономить %money% за год',
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.red,
+                    shadowColor: Colors.greenAccent,
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32.0)),
+                    minimumSize: const Size(400, 70), //////// HERE
+                  ),
+                  onPressed: () {},
+                  child: const Text('Подсчитать'),
+                )
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        label: const Text('Добавить вредную привычку'),
+        icon: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
