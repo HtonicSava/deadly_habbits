@@ -1,5 +1,6 @@
 part of 'bloc.dart';
 
+
 enum CalculationStatus { initial, success, failure }
 
 extension CalculationStatusX on CalculationStatus {
@@ -10,22 +11,22 @@ extension CalculationStatusX on CalculationStatus {
 
 class CalculationState extends Equatable {
   final CalculationStatus status;
-  final List<Habbit> habbits;
+  final List<Habit> habits;
   final double finalCost;
 
   const CalculationState(
       {this.status = CalculationStatus.initial,
-      this.habbits = const [],
+      this.habits = const [],
       this.finalCost = 0.0});
 
   @override
-  List<Object?> get props => [status, habbits, finalCost];
+  List<Object?> get props => [status, habits, finalCost];
 
   CalculationState copyWith(
-      {CalculationStatus? status, List<Habbit>? habbits, double? finalCost}) {
+      {CalculationStatus? status, List<Habit>? habits, double? finalCost}) {
     return CalculationState(
         status: status ?? this.status,
-        habbits: habbits ?? this.habbits,
+        habits: habits ?? this.habits,
         finalCost: finalCost ?? this.finalCost);
   }
 }
