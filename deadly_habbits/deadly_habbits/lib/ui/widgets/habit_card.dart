@@ -3,15 +3,34 @@ import 'package:flutter/material.dart';
 import '../../models/habit.dart';
 
 class HabitCard extends StatefulWidget {
-  const HabitCard({Key? key, required this.habit}) : super(key: key);
+  const HabitCard({Key? key, required this.habit, required this.updateData}) : super(key: key);
 
   final Habit habit;
+  final Function(Habit h) updateData;
 
   @override
-  State<HabitCard> createState() => _HabitCardState();
+  State<HabitCard> createState() => _HabitCardState(habit: habit);
 }
 
 class _HabitCardState extends State<HabitCard> {
+
+  _HabitCardState({required this.habit});
+
+  void recalculate() {
+    try {
+      habit.count = double.parse(countString ?? '0');
+      habit.unitPrice = double.parse(unitPriceString ?? '0');
+
+      widget.updateData(habit);
+    } catch (e) {
+    }
+  }
+
+  Habit habit;
+  String? unitPriceString;
+  String? countString;
+
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -47,13 +66,18 @@ class _HabitCardState extends State<HabitCard> {
                             const SizedBox(
                               width: 10,
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 300,
                               child: TextField(
-                                obscureText: true,
+                                onChanged: (String val) {
+                                  setState(() {
+                                    unitPriceString = val;
+                                    recalculate();
+                                  });
+                                },
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
-                                  labelText: '210 руб.',
+                                  suffix: Text('руб.')
                                 ),
                               ),
                             )
@@ -70,13 +94,19 @@ class _HabitCardState extends State<HabitCard> {
                             const SizedBox(
                               width: 10,
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 300,
                               child: TextField(
-                                obscureText: true,
+                                onChanged: (String val) {
+                                  setState(() {
+                                    countString = val;
+                                    recalculate();
+                                  });
+
+                                },
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
-                                  labelText: '10',
+                                  suffix: Text('штук')
                                 ),
                               ),
                             )
@@ -87,13 +117,13 @@ class _HabitCardState extends State<HabitCard> {
                           child: Column(
                             children: [
                               Text(
-                                'Вы бы могли сэкономить ${widget.habit.dayEconomy} за день',
+                                'Вы бы могли сэкономить ${habit.dayEconomy} за день',
                               ),
                               Text(
-                                'Вы бы могли сэкономить ${widget.habit.monthEconomy} за месяц',
+                                'Вы бы могли сэкономить ${habit.monthEconomy} за месяц',
                               ),
                               Text(
-                                'Вы бы могли сэкономить ${widget.habit.yearEconomy} за год',
+                                'Вы бы могли сэкономить ${habit.yearEconomy} за год',
                               ),
                             ],
                           ),

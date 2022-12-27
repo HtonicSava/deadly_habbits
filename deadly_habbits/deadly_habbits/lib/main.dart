@@ -34,6 +34,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Habit> habits = <Habit>[
+    Habit(
+        title: 'Курение',
+        countTitle: 'Сколько вы курите в день',
+        unitTitle: 'Цена на пачку сигарет',
+        icon: Icons.smoking_rooms),
+    Habit(
+        title: 'Кофе / Энергетики',
+        countTitle: 'Сколько вы выпиваете в день',
+        unitTitle: 'Цена на стакан кофе / банку энергетика',
+        icon: Icons.coffee),
+    Habit(
+        title: 'Алкоголь',
+        countTitle: 'Сколько вы выпиваете таких в день',
+        unitTitle: 'Цена на порцию алкоголя',
+        icon: Icons.local_drink),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,36 +72,62 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 const Divider(),
                 const SizedBox(height: 10),
-                const HabitCard(
-                  habit: Habit(title: 'Курение', countTitle: 'Сколько вы курите в день', unitTitle: 'Цена на пачку сигарет', icon: Icons.smoking_rooms),
+
+                SizedBox(
+                  height: 810,
+                  width: 1000,
+                  child: ListView.builder(
+                      itemCount: habits.length,
+                      itemBuilder: (BuildContext context, int i) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 10.0),
+                          child: HabitCard(
+                            updateData: (h) {
+                              setState(() {
+                                habits[i] = h;
+                              });
+                            },
+                            habit: Habit(
+                                title: habits[i].title,
+                                countTitle: habits[i].countTitle,
+                                unitTitle: habits[i].unitTitle,
+                                icon: habits[i].icon),
+                          ),
+                        );
+                      }),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const HabitCard(
-                  habit: Habit(title: 'Кофе / Энергетики', countTitle: 'Сколько вы выпиваете в день', unitTitle: 'Цена на стакан кофе / банку энергетика', icon: Icons.coffee),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const HabitCard(
-                  habit: Habit(title: 'Алкоголь', countTitle: 'Сколько вы выпиваете таких в день', unitTitle: 'Цена на порцию алкоголя', icon: Icons.local_drink),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
+
+                // const HabitCard(
+                //   habit: Habit(title: 'Курение', countTitle: 'Сколько вы курите в день', unitTitle: 'Цена на пачку сигарет', icon: Icons.smoking_rooms),
+                // ),
+                // const SizedBox(
+                //   height: 10,
+                // ),
+                // const HabitCard(
+                //   habit: Habit(title: 'Кофе / Энергетики', countTitle: 'Сколько вы выпиваете в день', unitTitle: 'Цена на стакан кофе / банку энергетика', icon: Icons.coffee),
+                // ),
+                // const SizedBox(
+                //   height: 10,
+                // ),
+                // const HabitCard(
+                //   habit: Habit(title: 'Алкоголь', countTitle: 'Сколько вы выпиваете таких в день', unitTitle: 'Цена на порцию алкоголя', icon: Icons.local_drink),
+                // ),
+                // const SizedBox(
+                //   height: 10,
+                // ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.red,
                     shadowColor: Colors.greenAccent,
                     elevation: 3,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32.0)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.0)),
                     minimumSize: const Size(300, 50), //////// HERE
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const GoodsPage()),);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => GoodsPage(countDaily())),
+                    );
                   },
                   child: const Text('Подсчитать'),
                 )
@@ -97,14 +141,29 @@ class _MyHomePageState extends State<MyHomePage> {
           showDialog(
               context: context,
               builder: (_) => HabitDialog(
-                onSubmitted: (Habit habit) {
-
-                },
-              ));
+                    onSubmitted: (Habit habit) {
+                      setState(() {
+                        habits.add(habit);
+                      });
+                    },
+                  ));
         },
         label: const Text('Добавить вредную привычку'),
         icon: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  double countDaily() {
+    double sum = 0;
+
+    for (Habit h in habits) {
+      print(h.unitPrice);
+      print(h.count);
+      sum += h.dayEconomy;
+    }
+
+    print(sum);
+    return sum;
   }
 }

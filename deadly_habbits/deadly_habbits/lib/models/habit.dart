@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Habit {
-  const Habit(
+  Habit(
       {required this.title,
       this.icon = Icons.warning,
       this.count = 0,
@@ -10,11 +10,11 @@ class Habit {
       required this.unitTitle});
   final String title;
   final IconData icon;
-  final double unitPrice;
+  double unitPrice;
   final String unitTitle;
 
   final String countTitle;
-  final int count;
+  double count;
 
   double get dayEconomy => unitPrice * count;
   double get weekEconomy => (unitPrice * count) * 7;

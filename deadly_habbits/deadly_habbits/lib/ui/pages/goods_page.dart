@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import '../../models/good.dart';
 
 class GoodsPage extends StatelessWidget {
-  const GoodsPage({Key? key}) : super(key: key);
+  const GoodsPage(this.sum, {Key? key}) : super(key: key);
+
+  final double sum;
 
   final List<Good> goods = const [
     Good(assetPath: 'assets/images/kovr.jpeg', name: 'Коврик для мыши', price: 308),
@@ -34,16 +36,33 @@ class GoodsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-            const SizedBox(height: 10),
-            Text(
-              'Вот что можно было бы приобрести за потраченные на вредные привычки деньги',
-              style: Theme.of(context).textTheme.headline5?.copyWith(),
-            ),
-            const Divider(),
-              Wrap(children: List.generate(goods.length, (i) => GoodCard(good: goods[i])),)
-          ],),
+              const SizedBox(height: 10),
+              Text(
+                'Вы тратите на вредные привычки $sum рублей в день, ${sum * 30} в месяц, и ${sum * 365} в год! Представляете, как это много?',
+                style: Theme.of(context).textTheme.headline5?.copyWith(),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'Вот что можно было бы приобрести за потраченные на вредные привычки деньги всего за месяц',
+                style: Theme.of(context).textTheme.headline5?.copyWith(),
+              ),
+              const Divider(),
+              Wrap(
+                children: List.generate(goods.length, (i) => GoodCard(good: goods[i])),
+              ),
+              const SizedBox(height: 200),
+
+              const Divider(),
+              const SizedBox(height: 200),
+
+              Text(
+                'Итого: 6702 / ' + (sum * 30).toString() + ' рублей. Может быть хоть это повод задуматься?',
+                style: Theme.of(context).textTheme.headline5?.copyWith(),
+              ),
+            ],
+          ),
         ),
-      ) ,
+      ),
     );
   }
 }

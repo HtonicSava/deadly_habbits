@@ -53,27 +53,27 @@ class _HabitDialogState extends State<HabitDialog> {
           const SizedBox(
             height: 16,
           ),
-          TextField(
-            controller: _unitTitleController,
-            decoration: const InputDecoration(
-              contentPadding:
-              EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-              hintText: 'Заголовок для единоразовой траты',
-              border: OutlineInputBorder(),
-            ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          TextField(
-            controller: _countTitleController,
-            decoration: const InputDecoration(
-              contentPadding:
-              EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-              hintText: 'Заголовок для дневной периодичности',
-              border: OutlineInputBorder(),
-            ),
-          ),
+          // TextField(
+          //   controller: _unitTitleController,
+          //   decoration: const InputDecoration(
+          //     contentPadding:
+          //     EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+          //     hintText: 'Как часто',
+          //     border: OutlineInputBorder(),
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 16,
+          // ),
+          // TextField(
+          //   controller: _countTitleController,
+          //   decoration: const InputDecoration(
+          //     contentPadding:
+          //     EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+          //     hintText: 'Сколько',
+          //     border: OutlineInputBorder(),
+          //   ),
+          // ),
         ],
       ),
       actions: [
@@ -87,7 +87,7 @@ class _HabitDialogState extends State<HabitDialog> {
           child: const Text('Добавить'),
           onPressed: () {
               widget.onSubmitted(
-                  Habit(title: _titleController.text, countTitle: _countTitleController.text, unitTitle: _unitTitleController.text));
+                  Habit(title: _titleController.text, countTitle: 'Сколько употребляете за день', unitTitle: 'Цена за единицу'));
               Navigator.of(context).pop();
           },
         ),
