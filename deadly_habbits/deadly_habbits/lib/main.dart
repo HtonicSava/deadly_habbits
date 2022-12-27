@@ -1,4 +1,6 @@
-import 'package:deadly_habbits/models/habbit.dart';
+import 'package:deadly_habbits/models/habit.dart';
+import 'package:deadly_habbits/ui/pages/goods_page.dart';
+import 'package:deadly_habbits/ui/pages/habit_dialog.dart';
 import 'package:deadly_habbits/ui/widgets/habit_card.dart';
 import 'package:flutter/material.dart';
 
@@ -78,9 +80,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     elevation: 3,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32.0)),
-                    minimumSize: const Size(400, 70), //////// HERE
+                    minimumSize: const Size(300, 50), //////// HERE
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const GoodsPage()),);
+                  },
                   child: const Text('Подсчитать'),
                 )
               ],
@@ -89,7 +93,15 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (_) => HabitDialog(
+                onSubmitted: (Habit habit) {
+
+                },
+              ));
+        },
         label: const Text('Добавить вредную привычку'),
         icon: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

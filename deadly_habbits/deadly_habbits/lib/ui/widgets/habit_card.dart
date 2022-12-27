@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/habbit.dart';
+import '../../models/habit.dart';
 
 class HabitCard extends StatefulWidget {
   const HabitCard({Key? key, required this.habit}) : super(key: key);
@@ -16,6 +16,7 @@ class _HabitCardState extends State<HabitCard> {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.grey,
+      elevation: 8,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ConstrainedBox(
